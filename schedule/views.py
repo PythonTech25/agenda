@@ -2,8 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from .models import Contact
 
 
-
-# Create your views here.
 def index_login(request):
     login = ''
 
@@ -18,6 +16,6 @@ def user_create(request):
 
 
 def contact_create(request, contact_id):
-    contact = get_object_or_404(Contact.objects, pk=contact_id)
+    contact = get_object_or_404(Contact.objects, id=contact_id)
     context = {'contacts': contact}
     return render(request, 'pages/contacts/contacts_create.html', context=context)

@@ -9,9 +9,5 @@ urlpatterns = [
     path('user/create/', views.user_create, name='user_create'),
 
     # contact crud
-    path(
-        'contacts/create/',
-        views.contact_create,
-        name='contact_create'
-    ),
+    path('contacts/create/<int:contact_id>/', views.contact_create, name='contact_create'),
 ]
