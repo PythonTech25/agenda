@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% block title %}Exibir contatos!{% endblock title %}
+{% block content %}
+
+<div class="container">
+  <table class="table margin_top">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        {% comment %} <th scope="col">Last Name</th> {% endcomment %}
+        <th scope="col">Phone</th>
+        <th scope="col">E-Mail</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+      
+        <tr>
+            <th scope="row"><a href="{% url 'contact_detail' contact.id %}">{{ contact.id }}</a></th>
+            <td>{{ contact.firstname }} {{ contact.lastname }}</td>
+            {% comment %} <td>{{ contact.lastname }}</td> {% endcomment %}
+            <td>{{ contact.phone }}</td>
+            <td>{{ contact.email }}</td>
+        </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}

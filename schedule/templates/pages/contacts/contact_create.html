@@ -1,32 +1,20 @@
 {% extends "index.html" %}
-{% block title %}Criar contatos!{% endblock title %}
+{% load static %}
+{% block title %}Exibir contato{% endblock title %}
+
 {% block content %}
 
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Phone</th>
-        <th scope="col">E-Mail</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for contact in contacts %}
-      
-        <tr>
-            <th scope="row"><a href="{% url 'contact_create' contact.id %}">{{ contact.pk }}</a></th>
-            <td>{{ contact.firstname }}</td>
-            <td>{{ contact.lastname }}</td>
-            <td>{{ contact.phone }}</td>
-            <td>{{ contact.email }}</td>
-        </tr>
-
-      {% endfor %}
-    </tbody>
-  </table>
+<div class="container margin_top">
+    <form action="" method="post">
+        <div class="form-floating mb-3">
+            {{form.firstname}}
+            <label for="firstname_id">Primeiro Nome</label>
+          </div>
+          <div class="form-floating mb-3">
+            {{form.lastname}}
+            <label for="lastname_id">Sobrenome</label>
+          </div>
+    </form>
 </div>
-
-{% endblock content %}
+        
+{% endblock content %}   
