@@ -1,8 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from .models import Contact
-from . import form
-
-app_name = 'contact'
+from . import forms
 
 
 def index_login(request):
@@ -33,11 +32,18 @@ def contact_detail(request, contact_id):
 
 def contact_create(request):
     if request.method == 'POST':
-        create = form.ContactForm(request.POST)
-        if create.is_valid():
-            create.save(commit=False)
-            create.save()
+        form = forms.ContactForm(request.POST, request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.owner = request.user
+            instance.save()
+            messages.success(request, 'Contato adicionado com sucesso!')
+            return redirect('contact_read')
+        else:
+            messages.error(request, 'Por favor, corrija os erros no formulário.')
+    else:
+        form = forms.ContactForm()
 
-    create = form.ContactForm()
-    context = {'form': create}
-    return render(request, 'pages/contacts/contact_create.html', context=context)
+    context = {'form': form}
+    return render(request, 'pages/contacts/contact_create.html', context)
+

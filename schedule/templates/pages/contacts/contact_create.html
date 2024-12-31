@@ -4,8 +4,8 @@
 
 {% block content %}
 
-<div class="container margin_top">
-    <form action="" method="post">
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <form action="{% url "contact_read" %}" method="post" class='card shadow p-3 bg-body-tertiary rounded' style="width: 500px;">{% csrf_token %}
         <div class="form-floating mb-3">
             {{form.firstname}}
             <label for="firstname_id">Primeiro Nome</label>
@@ -13,6 +13,33 @@
           <div class="form-floating mb-3">
             {{form.lastname}}
             <label for="lastname_id">Sobrenome</label>
+          </div>
+          <div class="form-floating mb-3">
+            {{form.phone}}
+            <label for="phone_id">Número do celular</label>
+          </div>
+          <div class="form-floating mb-3">
+            {{form.email}}
+            <label for="email_id">E-Mail</label>
+          </div>
+          <div class="form-floating mb-3">
+            {{form.description}}
+            <label for="description_id">Descrição</label>
+          </div>
+          <div class="form-floating mb-3">
+            {{form.show}}
+            <label for="show_id">Exibir</label>
+          </div>
+          <div class="form-floating mb-3">
+            {{form.picture}}
+            <label for="picture_id">Foto</label>
+          </div>
+          <div class="form-floating mb-3">
+            {{form.category}}
+            <label for="category_id">Categoria</label>
+          </div>
+          <div class="">
+            <button type="submit" class="btn btn-outline-dark btn-lg w-100">Adicionar contato</button>
           </div>
     </form>
 </div>
